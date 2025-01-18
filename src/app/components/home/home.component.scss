@@ -5,6 +5,8 @@
 }
 
 .product {
+  background-color: var(--background-color);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
   padding: 10px;
   text-align: center;

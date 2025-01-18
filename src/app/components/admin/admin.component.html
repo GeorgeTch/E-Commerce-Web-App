@@ -1,1 +1,36 @@
-<p>admin works!</p>
+<div class="admin-form">
+  <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image URL:</label>
+      <input id="image" formControlName="image" type="text" />
+    </div>
+
+    <button type="submit">
+      {{ isEditMode ? "Update Product" : "Add Product" }}
+    </button>
+    <button type="button" (click)="resetForm()" *ngIf="isEditMode">
+      Cancel
+    </button>
+  </form>
+</div>
+
+<h2>Existing Products</h2>
+<div *ngFor="let product of products" class="product-item">
+  <p>{{ product.title }}</p>
+  <button (click)="editProduct(product)">Edit</button>
+</div>

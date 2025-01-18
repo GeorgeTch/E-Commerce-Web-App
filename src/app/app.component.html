@@ -2,6 +2,9 @@
   <a routerLink="/">Home</a>
   <a routerLink="/cart">Cart</a>
   <a routerLink="/admin">Admin</a>
+  <button (click)="toggleTheme()">
+    <img [src]="themeIcon" [alt]="isDarkMode ? 'Dark mode' : 'Light mode'" />
+  </button>
 </nav>
 
 <router-outlet></router-outlet>
