@@ -7,8 +7,19 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class CartService {
-  private cart: IProduct[] = [];
+  private readonly CART_KEY = 'cart';
+  private cart: IProduct[] = this.loadCart();
+
   constructor(private authService: AuthService, private router: Router) {}
+
+  private loadCart(): IProduct[] {
+    const cart = localStorage.getItem(this.CART_KEY);
+    return cart ? JSON.parse(cart) : [];
+  }
+
+  private saveCart(): void {
+    localStorage.setItem(this.CART_KEY, JSON.stringify(this.cart));
+  }
 
   addToCart(product: IProduct): void {
     if (!this.authService.isLoggedIn()) {
@@ -23,7 +34,8 @@ export class CartService {
     } else {
       this.cart.push({ ...product, quantity: 1 });
     }
-    console.log('Product added to cart: ', product);
+
+    this.saveCart();
   }
 
   getCart(): IProduct[] {
@@ -32,10 +44,12 @@ export class CartService {
 
   removeFromCart(id: number): void {
     this.cart = this.cart.filter((item) => item.id !== id);
+    this.saveCart();
   }
 
   clearCart(): void {
     this.cart = [];
+    this.saveCart();
   }
 
   updateQuantity(id: number, quantity: number): void {
@@ -46,5 +60,6 @@ export class CartService {
     } else if (product && quantity <= 0) {
       this.removeFromCart(id);
     }
+    this.saveCart();
   }
 }

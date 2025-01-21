@@ -28,7 +28,16 @@
       </tr>
     </tbody>
   </table>
-  <div class="total">Grand Total: {{ total | currency }}</div>
+  <div class="total" @totalAmountAnimation>
+    <span> Grand Total: $ </span>
+    <span
+      *ngFor="let digit of grandTotalDigits"
+      class="digit"
+      [@digitRollAnimation]
+    >
+      {{ digit }}
+    </span>
+  </div>
 </div>
 <ng-template #emptyCart>
   <p>Your cart is empty.</p>
