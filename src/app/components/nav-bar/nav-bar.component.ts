@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,11 +14,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavBarComponent {
   isLoggedIn: boolean = false;
+  cartQuantity = 0;
 
   constructor(
     private themeService: ThemeService,
     private router: Router,
     private authService: AuthService,
+    private cartService: CartService,
     private toastr: ToastrService
   ) {}
 
@@ -25,6 +28,12 @@ export class NavBarComponent {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.authService.currentUserSubject.subscribe((token) => {
       this.isLoggedIn = !!token;
+    });
+    this.cartService.cartItems$.subscribe((cartItems) => {
+      this.cartQuantity = cartItems.reduce(
+        (acc, item) => acc + (item.quantity || 0),
+        0
+      );
     });
   }
 

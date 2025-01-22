@@ -9,8 +9,11 @@
       <img [src]="themeIcon" [alt]="isDarkMode ? 'Dark mode' : 'Light mode'" />
     </button>
 
-    <button routerLink="/cart">
+    <button routerLink="/cart" class="cart-btn">
       <img src="/assets/icons/shopping-cart.svg" alt="shopping cart" />
+      <span *ngIf="cartQuantity > 0" class="cart-indicator">{{
+        cartQuantity
+      }}</span>
     </button>
 
     <button *ngIf="!isLoggedIn" (click)="onLogin()">Sign In</button>

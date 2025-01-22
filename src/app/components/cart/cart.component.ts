@@ -58,4 +58,13 @@ export class CartComponent {
   get grandTotalDigits(): string[] {
     return this.calculateTotal.toFixed(2).split('');
   }
+
+  clearCart(): void {
+    this.cartService.clearCart();
+    this.loadCart();
+    this.toastr.error(
+      'All items have been removed from the cart',
+      'Cart Cleared'
+    );
+  }
 }

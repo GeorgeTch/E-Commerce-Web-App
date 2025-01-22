@@ -82,6 +82,22 @@
   color: #666;
 }
 
+.clear-cart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e63939;
+  }
+}
+
 @keyframes digitRoll {
   0% {
     transform: translateY(10px);
