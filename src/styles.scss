@@ -1,35 +1,152 @@
+// :root {
+//   --background-color: #ffffff;
+//   --text-color: #333333;
+//   --primary-color: #007bff;
+//   --secondary-color: #6c757d;
+//   --button-background: #007bff;
+//   --button-text-color: white;
+//   --link-color: #007bff;
+//   --card-background: #f8f9fa;
+//   --border-color: #e0e0e0;
+//   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+// }
+
+// // Dark theme
+// .dark-theme {
+//   --background-color: #121212;
+//   --text-color: #e0e0e0;
+//   --primary-color: #1a73e8;
+//   --secondary-color: #f1f1f1;
+//   --button-background: #1a73e8;
+//   --button-text-color: white;
+//   --link-color: #1a73e8;
+//   --card-background: #333333;
+//   --border-color: #444444;
+//   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+// }
+
+// body {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+//   font-family: Arial, sans-serif;
+//   background-color: var(--background-color);
+//   color: var(--text-color);
+// }
+
+/* Light Theme */
+/* Light Theme */
+/* Light Theme */
 :root {
-  --background-color: #ffffff;
-  --text-color: #333333;
-  --primary-color: #007bff;
+  --background-color: #f4faff;
+  --text-color: #2e3a4f;
+  --heading-color: #1c2b44;
+  --primary-color: #2979ff;
+  --primary-hover-color: #1c54b2;
   --secondary-color: #6c757d;
-  --button-background: #007bff;
-  --button-text-color: white;
-  --link-color: #007bff;
-  --card-background: #f8f9fa;
-  --border-color: #e0e0e0;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  --button-background: linear-gradient(135deg, #2979ff, #1c54b2);
+  --button-hover-background: linear-gradient(135deg, #1c54b2, #123a80);
+  --button-text-color: #ffffff;
+
+  --delete-button-background: linear-gradient(135deg, #ff4d4d, #d32f2f);
+  --delete-button-hover: linear-gradient(135deg, #d32f2f, #b71c1c);
+
+  --card-background: #ffffff;
+  --card-border-color: #d0d9e4;
+  --card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+  --navbar-background: #ffffff;
+  --navbar-text-color: #2e3a4f;
+  --navbar-border-color: #d0d9e4;
+
+  --footer-background: #2e3a4f;
+  --footer-text-color: #ffffff;
+
+  --link-color: #2979ff;
+  --link-hover-color: #1c54b2;
+
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  --input-border-color: #d0d9e4;
+  --input-focus-border-color: #2979ff;
 }
 
-// Dark theme
+/* Dark Theme */
 .dark-theme {
-  --background-color: #121212;
+  --background-color: #1a2236;
   --text-color: #e0e0e0;
-  --primary-color: #1a73e8;
-  --secondary-color: #f1f1f1;
-  --button-background: #1a73e8;
-  --button-text-color: white;
-  --link-color: #1a73e8;
-  --card-background: #333333;
-  --border-color: #444444;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --heading-color: #ffffff;
+  --primary-color: #4a8eff;
+  --primary-hover-color: #3b74c4;
+  --secondary-color: #a6a6a6;
+
+  --button-background: linear-gradient(135deg, #4a8eff, #3b74c4);
+  --button-hover-background: linear-gradient(135deg, #3b74c4, #295899);
+
+  --delete-button-background: linear-gradient(135deg, #ef5350, #d32f2f);
+  --delete-button-hover: linear-gradient(135deg, #d32f2f, #b71c1c);
+
+  --card-background: #222b41;
+  --card-border-color: #3a4561;
+  --card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  --navbar-background: #222b41;
+  --navbar-text-color: #e0e0e0;
+  --navbar-border-color: #3a4561;
+
+  --footer-background: #1a2236;
+  --footer-text-color: #a6a6a6;
+
+  --link-color: #4a8eff;
+  --link-hover-color: #3b74c4;
+
+  --input-border-color: #3a4561;
+  --input-focus-border-color: #4a8eff;
 }
 
+/* General Reset */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.ngx-toastr {
+  font-family: "Inter", sans-serif;
+
+  .toast {
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: var(--box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+
+  .toast-success {
+    background-color: #4caf50 !important; /* Success green */
+    color: white !important;
+  }
+
+  .toast-error {
+    background-color: #f44336 !important; /* Error red */
+    color: white !important;
+  }
+
+  .toast-info {
+    background-color: #2196f3 !important; /* Info blue */
+    color: white !important;
+  }
+
+  .toast-warning {
+    background-color: #ffc107 !important; /* Warning yellow */
+    color: black !important;
+  }
+
+  .toast-top-right {
+    top: 16px;
+    right: 16px;
+  }
 }

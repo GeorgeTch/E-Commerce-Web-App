@@ -3,6 +3,7 @@ import { ThemeService } from '../../services/theme.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,7 +17,8 @@ export class NavBarComponent {
   constructor(
     private themeService: ThemeService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class NavBarComponent {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+    this.toastr.info('Logged out');
   }
 
   get isDarkMode() {

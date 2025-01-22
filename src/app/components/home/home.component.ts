@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../../shared/filter.pipe';
+import { CartService } from '../../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +20,20 @@ export class HomeComponent {
   categories: string[] = [];
   selectedCategory: string = 'all';
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.loadCategories();
     this.loadProducts();
+  }
+
+  addToCart(product: IProduct): void {
+    this.cartService.addToCart(product);
+    this.toastr.success('Product added to cart', 'Success');
   }
 
   loadCategories(): void {

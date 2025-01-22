@@ -1,11 +1,19 @@
 <nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/cart">Cart</a>
-  <a routerLink="/admin" *ngIf="isLoggedIn">Admin</a>
-  <button (click)="toggleTheme()">
-    <img [src]="themeIcon" [alt]="isDarkMode ? 'Dark mode' : 'Light mode'" />
-  </button>
+  <div>
+    <a routerLink="/">Home</a>
+    <a routerLink="/admin" *ngIf="isLoggedIn">Admin</a>
+  </div>
 
-  <button *ngIf="!isLoggedIn" (click)="onLogin()">Sign In</button>
-  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  <div>
+    <button (click)="toggleTheme()">
+      <img [src]="themeIcon" [alt]="isDarkMode ? 'Dark mode' : 'Light mode'" />
+    </button>
+
+    <button routerLink="/cart">
+      <img src="/assets/icons/shopping-cart.svg" alt="shopping cart" />
+    </button>
+
+    <button *ngIf="!isLoggedIn" (click)="onLogin()">Sign In</button>
+    <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  </div>
 </nav>

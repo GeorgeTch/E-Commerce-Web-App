@@ -1,4 +1,4 @@
-<section>
+<section class="search-section">
   <input
     type="text"
     [(ngModel)]="searchInput"
@@ -17,11 +17,19 @@
   </button>
 </div>
 
-<div class="products">
-  <div *ngFor="let product of products | filter : searchInput" class="product">
-    <img [src]="product.image" alt="{{ product.title }}" />
-    <h3>{{ product.title }}</h3>
-    <p>{{ product.price | currency }}</p>
-    <button routerLink="/product/{{ product.id }}">View Details</button>
+<section class="products-section">
+  <div class="products">
+    <div
+      *ngFor="let product of products | filter : searchInput"
+      class="product"
+      routerLink="/product/{{ product.id }}"
+    >
+      <img [src]="product.image" alt="{{ product.title }}" />
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.price | currency }}</p>
+      <button (click)="addToCart(product); $event.stopPropagation()">
+        Add to Cart
+      </button>
+    </div>
   </div>
-</div>
+</section>

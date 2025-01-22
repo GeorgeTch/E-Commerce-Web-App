@@ -33,4 +33,5 @@
 <div *ngFor="let product of products" class="product-item">
   <p>{{ product.title }}</p>
   <button (click)="editProduct(product)">Edit</button>
+  <button [class.delete-btn]="" (click)="deleteProduct(product)">Delete</button>
 </div>

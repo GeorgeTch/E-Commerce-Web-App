@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoaderService } from '../../services/loader.service';
 import { totalAmountAnimation } from '../../animations/total-amount-animation';
 import { digitRollAnimation } from '../../animations/digit-roll-animation';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,8 @@ export class CartComponent {
 
   constructor(
     private cartService: CartService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class CartComponent {
   removeFromCart(id: number): void {
     this.cartService.removeFromCart(id);
     this.loadCart();
+    this.toastr.error('Product removed from cart', 'Success');
   }
 
   updateQuantity(id: number, quantity: number): void {

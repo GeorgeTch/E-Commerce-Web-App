@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../model/product.model';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,8 @@ export class ProductDetailsComponent {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class ProductDetailsComponent {
   addToCart(): void {
     if (this.product) {
       this.cartService.addToCart(this.product);
+      this.toastr.success('Product added to cart', 'Success');
     }
   }
 }

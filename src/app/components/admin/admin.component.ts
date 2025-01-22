@@ -8,6 +8,7 @@ import {
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../model/product.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin',
@@ -21,7 +22,11 @@ export class AdminComponent {
   isEditMode: boolean = false;
   selectedProductId: number | null = null;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private toastr: ToastrService
+  ) {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0.1)]],
@@ -52,8 +57,8 @@ export class AdminComponent {
               this.products = this.products.map((product) =>
                 product.id === data.id ? data : product
               );
-              alert('Product updated successfully');
               this.resetForm();
+              this.toastr.success('Product updated successfully');
             },
             (error) => {
               console.error('Error updating product', error);
@@ -63,8 +68,8 @@ export class AdminComponent {
         this.productService.addProduct(productData).subscribe(
           () => {
             this.products.push(productData);
-            alert('Product added successfully');
             this.resetForm();
+            this.toastr.success('Product added successfully');
           },
           (error) => {
             console.error('Error adding product', error);
@@ -84,6 +89,18 @@ export class AdminComponent {
       description: product.description,
       image: product.image,
     });
+  }
+
+  deleteProduct(product: IProduct) {
+    this.productService.deleteProduct(product.id).subscribe(
+      () => {
+        this.products = this.products.filter((p) => p.id !== product.id);
+        this.toastr.warning('Product deleted successfully');
+      },
+      (error) => {
+        console.error('Error deleting product', error);
+      }
+    );
   }
 
   resetForm() {
