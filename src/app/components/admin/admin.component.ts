@@ -28,10 +28,10 @@ export class AdminComponent {
     private toastr: ToastrService
   ) {
     this.productForm = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', [Validators.required, Validators.min(0.1)]],
-      description: ['', Validators.required],
-      image: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      image: ['', [Validators.required, Validators.pattern('https?://.+')]],
     });
   }
 

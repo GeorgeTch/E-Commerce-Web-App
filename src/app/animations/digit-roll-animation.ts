@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 
+//doesn't work properly!!!
 export const digitRollAnimation = trigger('digitRollAnimation', [
   transition(':increment', [
     style({ transform: 'translateY(-100%)', opacity: 0 }),

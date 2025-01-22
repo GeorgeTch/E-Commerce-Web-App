@@ -2,27 +2,109 @@
   <form [formGroup]="productForm" (ngSubmit)="submitForm()">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" id="title" formControlName="title" />
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        [class.is-invalid]="
+          productForm.get('title')?.invalid && productForm.get('title')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('title')?.invalid && productForm.get('title')?.touched
+        "
+        class="error-message"
+      >
+        <small *ngIf="productForm.get('title')?.hasError('required')"
+          >Title is required.</small
+        >
+        <small *ngIf="productForm.get('title')?.hasError('minlength')"
+          >Title must be at least 3 characters long.</small
+        >
+      </div>
     </div>
 
     <div class="form-group">
       <label for="price">Price:</label>
-      <input id="price" formControlName="price" type="number" />
+      <input
+        id="price"
+        formControlName="price"
+        type="number"
+        [class.is-invalid]="
+          productForm.get('price')?.invalid && productForm.get('price')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('price')?.invalid && productForm.get('price')?.touched
+        "
+        class="error-message"
+      >
+        <small *ngIf="productForm.get('price')?.hasError('required')"
+          >Price is required.</small
+        >
+        <small *ngIf="productForm.get('price')?.hasError('min')"
+          >Price must be a positive number.</small
+        >
+      </div>
     </div>
 
     <div class="form-group">
       <label for="description">Description:</label>
-      <textarea id="description" formControlName="description"></textarea>
+      <textarea
+        id="description"
+        formControlName="description"
+        [class.is-invalid]="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+      ></textarea>
+      <div
+        *ngIf="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+        class="error-message"
+      >
+        <small *ngIf="productForm.get('description')?.hasError('required')"
+          >Description is required.</small
+        >
+        <small *ngIf="productForm.get('description')?.hasError('minlength')"
+          >Description must be at least 10 characters long.</small
+        >
+      </div>
     </div>
 
     <div class="form-group">
       <label for="image">Image URL:</label>
-      <input id="image" formControlName="image" type="text" />
+      <input
+        id="image"
+        formControlName="image"
+        type="text"
+        [class.is-invalid]="
+          productForm.get('image')?.invalid && productForm.get('image')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('image')?.invalid && productForm.get('image')?.touched
+        "
+        class="error-message"
+      >
+        <small *ngIf="productForm.get('image')?.hasError('required')"
+          >Image URL is required.</small
+        >
+        <small *ngIf="productForm.get('image')?.hasError('pattern')"
+          >Please enter a valid URL.</small
+        >
+      </div>
     </div>
 
-    <button type="submit">
+    <button type="submit" [disabled]="productForm.invalid">
       {{ isEditMode ? "Update Product" : "Add Product" }}
     </button>
+
     <button type="button" (click)="resetForm()" *ngIf="isEditMode">
       Cancel
     </button>
@@ -32,6 +114,10 @@
 <h2>Existing Products</h2>
 <div *ngFor="let product of products" class="product-item">
   <p>{{ product.title }}</p>
-  <button (click)="editProduct(product)">Edit</button>
-  <button [class.delete-btn]="" (click)="deleteProduct(product)">Delete</button>
+  <div>
+    <button (click)="editProduct(product)">Edit</button>
+    <button [class.delete-btn]="" (click)="deleteProduct(product)">
+      Delete
+    </button>
+  </div>
 </div>
