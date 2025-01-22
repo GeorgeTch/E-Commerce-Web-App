@@ -27,7 +27,6 @@ export class ProductDetailsComponent {
     this.productService.getProductById(id).subscribe(
       (data) => {
         this.product = data;
-        console.log('Product details', this.product);
       },
       (error) => {
         console.error('Error fetching product details', error);

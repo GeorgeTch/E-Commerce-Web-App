@@ -42,7 +42,7 @@ export class HomeComponent {
         this.categories = ['all', ...data];
       },
       (error) => {
-        console.log('Error fetching categories', error);
+        console.error('Error fetching categories', error);
       }
     );
   }
@@ -54,7 +54,7 @@ export class HomeComponent {
           this.products = data;
         },
         (error) => {
-          console.log('Error fetching products', error);
+          console.error('Error fetching products', error);
         }
       );
       return;
@@ -64,7 +64,7 @@ export class HomeComponent {
         this.products = data;
       },
       (error) => {
-        console.log('Error fetching products', error);
+        console.error('Error fetching products', error);
       }
     );
   }
