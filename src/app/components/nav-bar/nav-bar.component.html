@@ -1,14 +1,10 @@
 <nav>
-  <div>
+  <div class="nav-left">
     <a routerLink="/">Home</a>
-    <a routerLink="/admin" *ngIf="isLoggedIn">Admin</a>
   </div>
 
-  <div>
-    <button (click)="toggleTheme()">
-      <img [src]="themeIcon" [alt]="isDarkMode ? 'Dark mode' : 'Light mode'" />
-    </button>
-
+  <div class="nav-right">
+    <a routerLink="/admin" *ngIf="isLoggedIn">Admin</a>
     <button routerLink="/cart" class="cart-btn">
       <img src="/assets/icons/shopping-cart.svg" alt="shopping cart" />
       <span *ngIf="cartQuantity > 0" class="cart-indicator">{{
@@ -16,7 +12,19 @@
       }}</span>
     </button>
 
-    <button *ngIf="!isLoggedIn" (click)="onLogin()">Sign In</button>
-    <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <button class="burger-menu" (click)="toggleMenu()">
+      <img src="/assets/icons/menu.svg" alt="Menu" />
+    </button>
+
+    <div class="nav-links" [ngClass]="{ 'show-menu': menuOpen }">
+      <button (click)="toggleTheme()">
+        <img
+          [src]="themeIcon"
+          [alt]="isDarkMode ? 'Dark mode' : 'Light mode'"
+        />
+      </button>
+      <button *ngIf="!isLoggedIn" (click)="onLogin()">Sign In</button>
+      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    </div>
   </div>
 </nav>

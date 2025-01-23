@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
   imports: [RouterLink, CommonModule],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss',
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent {
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   cartQuantity = 0;
+  menuOpen = false;
 
   constructor(
     private themeService: ThemeService,
@@ -37,6 +38,20 @@ export class NavBarComponent {
     });
   }
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event) {
+    const target = event.target as HTMLElement;
+
+    // Close the menu if the click is outside the dropdown or burger menu
+    if (!target.closest('.burger-menu') && !target.closest('.nav-links')) {
+      this.menuOpen = false;
+    }
+  }
+
   onLogin() {
     this.router.navigate(['/login']);
   }
@@ -45,6 +60,7 @@ export class NavBarComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
     this.toastr.info('Logged out');
+    this.cartService.clearCart();
   }
 
   get isDarkMode() {
@@ -59,6 +75,5 @@ export class NavBarComponent {
 
   toggleTheme() {
     this.themeService.toggleTheme();
-    this.themeIcon;
   }
 }
