@@ -11,8 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  username = '';
-  password = '';
+  username = 'mor_2314';
+  password = '83r5^';
   errorMessage = '';
 
   constructor(

@@ -1,64 +1,90 @@
-<<<<<<< HEAD
-# ECommerceAngularApp
+# E-Commerce Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+[Visit the Live Project](https://el-shop.netlify.app/)
 
-## Development server
+This is a modern e-commerce web application built using Angular 19. The platform provides users with the ability to browse products, manage their shopping cart, view product details, and access admin features. The app includes authentication, cart management, and a theme-switching option.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### User Features
 
-## Code scaffolding
+- **Product Listing**: Browse all products with details such as name, price, and description.
+- **Product Details**: View detailed information about a specific product.
+- **Shopping Cart**: Add, update, or remove products from the cart.
+- **Authentication**:
+  - Login/Logout functionality for users.
+  - Access control for admin-specific features.
+- **Theme Switching**: Toggle between light and dark themes for better user accessibility.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Admin Features
 
-```bash
-ng generate component component-name
-```
+- **Admin Dashboard**: Manage the product catalog (add, edit, or delete products).
+- **Secure Access**: Admin functionalities are restricted to authorized users only.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Technologies Used
 
-```bash
-ng generate --help
-```
+- **Frontend**: Angular 19, TypeScript
+- **Styling**: SCSS (SASS)
+- **Routing**: Angular Router
+- **State Management**: Angular Services
+- **API Calls**: Angular HTTPClient
+- **Storage**: LocalStorage / SessionStorage
+- **Notifications**: Ngx-Toastr
+- **Icons**: Custom SVG assets
 
-## Building
+## Project Structure
 
-To build the project run:
+src/
 
-```bash
-ng build
-```
+- ├── app/
+- │ ├── components/
+- │ │ ├── nav-bar/ # Navbar component
+- │ │ ├── product-list/ # Product listing component
+- │ │ ├── product-detail/ # Product detail component
+- │ │ ├── cart/ # Cart component
+- │ │ └── admin/ # Admin dashboard component
+- │ ├── models/ # Interfaces for data (Product, CartItem, etc.)
+- │ ├── services/ # Services for handling API, cart, auth, etc.
+- │ ├── shared/ # Shared modules, directives, pipes
+- │ └── app-routing.module.ts # Application routes
+- ├── assets/ # Static assets (icons, images, etc.)
+- ├── environments/ # Environment configuration files
+- └── styles/ # Global SCSS styles
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Core Functionalities
 
-## Running unit tests
+### Product Listing
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Displays a list of products fetched from a mock API [https://fakestoreapi.com/products].
+- Each product includes its name, image, price, and a button to view more details.
 
-```bash
-ng test
-```
+### Product Details
 
-## Running end-to-end tests
+- Displays detailed information about the selected product.
+- Includes an option to add the product to the shopping cart.
 
-For end-to-end (e2e) testing, run:
+### Shopping Cart
 
-```bash
-ng e2e
-```
+- Tracks items added by the user.
+- Allows updating the quantity or removing items.
+- Displays a total price calculation.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Authentication
 
-## Additional Resources
+- Users can log in to access protected routes like the admin dashboard [https://fakestoreapi.com/users].
+- Admin users can perform CRUD operations on products.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# E-Commerce-Web-App
-Angular e-commerce project
->>>>>>> 266733296902ac107bc3335108733f8270f0e8da
+### Responsive Navbar
+
+- Provides easy navigation between home, cart, and admin.
+- Collapses links into a burger menu on smaller screens.
+
+### Theme Switching
+
+- Allows toggling between light and dark modes for improved accessibility.
+
+### API Integration
+
+- The project integrates with a mock API [https://fakestoreapi.com] for product and user data.
